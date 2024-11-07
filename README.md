@@ -27,11 +27,17 @@ The platform addresses limitations in traditional digital libraries, such as lim
   1. Provides an overview of the user’s reading progress, book lists, and ratings.
   2. Allows users to update ratings or categories for any book.
 
+## Application Links
+[![Application Link](https://img.shields.io/badge/Application-green?style=for-the-badge)](http://34.75.0.13:8500/)
+
+[![Codelabs](https://img.shields.io/badge/Codelabs-blue?style=for-the-badge)](https://codelabs-preview.appspot.com/?file_id=1jFy6Rx0jzpvzu8b_3Qoau-6H9RGZU_eqZh1-KDYAFwI#0)
+
+[![Video](https://img.shields.io/badge/Video-CC6699?style=for-the-badge)](https://youtu.be/mWA-ZNdFogo)
 
 ## Architecture Diagram
+![image](https://github.com/BigDataIA-Spring2024-Sec1-Team4/FinalProject/assets/114356265/a50711ae-f3d1-486a-9812-526c7925966a)
 
-Illustrates the data flow, including the integration of recommendation algorithms, audio synthesis, and the user interface components.
-Technology Stack
+## Technology Stack
   [![Python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)](https://www.python.org/)
   [![Snowflake](https://img.shields.io/badge/Snowflake-387BC3?style=for-the-badge&logo=snowflake&logoColor=light)](https://www.snowflake.com/)
   [![Beautiful Soup](https://img.shields.io/badge/Beautiful%20Soup-59666C?style=for-the-badge&logo=python&logoColor=blue)](https://www.crummy.com/software/BeautifulSoup/)
@@ -41,26 +47,140 @@ Technology Stack
   [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://www.streamlit.io/)
   [![Amazon S3](https://img.shields.io/badge/Amazon%20S3-569A31?style=for-the-badge&logo=amazon-s3&logoColor=white)](https://aws.amazon.com/s3/)
 
+## Project Structure:
 
-Project File Structure
 ```
 ├── Makefile
 ├── airflow
-│   ├── dags                   # Airflow DAGs for ETL and data processing
-│   ├── logs                   # Logs for Airflow execution
-│   └── plugins                # Airflow plugins
+│   ├── config
+│   ├── dags
+│   │   ├── __pycache__
+│   │   │   └── run.cpython-312.pyc
+│   │   ├── run.py
+│   │   └── scripts
+│   │       ├── audio_linkgeneration.py
+│   │       ├── audio_processing.py
+│   │       ├── getSeattleLibrary.py
+│   │       └── inventory_preprocessing.py
+│   ├── logs
+│   │   ├── dag_processor_manager
+│   │   │   └── dag_processor_manager.log
+│   │   └── scheduler
+│   │       ├── 2024-04-25
+│   │       │   └── run.py.log
+│   │       └── latest -> 2024-04-25
+│   └── plugins
 ├── backend
-│   ├── main.py                # FastAPI backend for user and data operations
-│   ├── utils                  # Utility modules for backend operations
-├── docker-compose.yaml        # Configuration for container orchestration
-├── requirements.txt           # Python dependencies
+│   ├── Dockerfile
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── get_book_details.cpython-39.pyc
+│   │   ├── main.cpython-310.pyc
+│   │   ├── main.cpython-311.pyc
+│   │   └── main.cpython-39.pyc
+│   ├── main.py
+│   ├── requirements.txt
+│   └── utils
+│       ├── __pycache__
+│       │   ├── login_backend.cpython-310.pyc
+│       │   ├── login_backend.cpython-311.pyc
+│       │   ├── login_backend.cpython-39.pyc
+│       │   ├── snowflake_connector.cpython-310.pyc
+│       │   ├── snowflake_connector.cpython-311.pyc
+│       │   └── snowflake_connector.cpython-39.pyc
+│       ├── login_backend.py
+│       └── snowflake_connector.py
+├── docker-compose.yaml
+├── requirements.txt
 ├── scripts
-│   ├── DataPreprocessing      # Scripts for data cleaning and transformation
-│   ├── GoodreadsScraper       # Scraper for collecting Goodreads data
+│   ├── DataPreprocessing
+│   │   ├── Goodreads_Preprocessing.py
+│   │   ├── Goodreads_Preprocessing_2.py
+│   │   └── getBookInventory.py
+│   ├── GoodreadsScraper
+│   │   ├── CSV
+│   │   │   ├── goodreads_merged.csv
+│   │   │   ├── out_books.csv
+│   │   │   ├── out_decade_books.csv
+│   │   │   ├── out_mystrey_books.csv
+│   │   │   ├── out_once_books.csv
+│   │   │   └── out_young_books.csv
+│   │   ├── GoodreadsScraper
+│   │   │   ├── __init__.py
+│   │   │   ├── __pycache__
+│   │   │   │   ├── __init__.cpython-310.pyc
+│   │   │   │   ├── items.cpython-310.pyc
+│   │   │   │   ├── pipelines.cpython-310.pyc
+│   │   │   │   └── settings.cpython-310.pyc
+│   │   │   ├── custom_filters.py
+│   │   │   ├── items.py
+│   │   │   ├── middlewares.py
+│   │   │   ├── pipelines.py
+│   │   │   ├── settings.py
+│   │   │   └── spiders
+│   │   │       ├── __init__.py
+│   │   │       ├── __pycache__
+│   │   │       │   ├── __init__.cpython-310.pyc
+│   │   │       │   ├── author_spider.cpython-310.pyc
+│   │   │       │   ├── book_spider.cpython-310.pyc
+│   │   │       │   ├── list_spider.cpython-310.pyc
+│   │   │       │   └── mybooks_spider.cpython-310.pyc
+│   │   │       ├── author_spider.py
+│   │   │       ├── book_spider.py
+│   │   │       └── list_spider.py
+│   │   ├── book_goodreads_book.jl
+│   │   ├── book_goodreads_decade_book.jl
+│   │   ├── book_goodreads_mystrey_book.jl
+│   │   ├── book_goodreads_once_book.jl
+│   │   ├── book_goodreads_young_book.jl
+│   │   ├── chromedriver
+│   │   ├── cleanup.py
+│   │   ├── crawl.py
+│   │   ├── merge.py
+│   │   ├── scrapy.cfg
+│   │   └── scrapy.log
+│   ├── book_attributes.csv
+│   ├── book_attributes_null.csv
+│   ├── csv_snowflake.py
+│   ├── getBookProfile.py
+│   └── openai_newkey.py
 └── streamlit
-    ├── main.py                # Main application for the Streamlit frontend
-    ├── utils                  # Helper scripts for frontend functionality
+    ├── Dockerfile
+    ├── __pycache__
+    │   ├── book_recommendation.cpython-310.pyc
+    │   ├── book_recommendation.cpython-311.pyc
+    │   ├── book_recommendation.cpython-39.pyc
+    │   ├── search_book.cpython-310.pyc
+    │   ├── search_book.cpython-311.pyc
+    │   ├── search_book.cpython-39.pyc
+    │   ├── search_book_new.cpython-310.pyc
+    │   ├── search_book_new.cpython-311.pyc
+    │   ├── search_book_new.cpython-39.pyc
+    │   ├── user_dashboard.cpython-310.pyc
+    │   ├── user_dashboard.cpython-311.pyc
+    │   ├── user_dashboard.cpython-39.pyc
+    │   ├── user_survey.cpython-310.pyc
+    │   ├── user_survey.cpython-311.pyc
+    │   └── user_survey.cpython-39.pyc
+    ├── book_recommendation.py
+    ├── login.py
+    ├── main.py
+    ├── pages
+    ├── requirements.txt
+    ├── search_book.py
+    ├── search_book_new.py
+    ├── streamlit_app.py
+    ├── user_dashboard.py
+    ├── user_survey.py
+    └── utils
+        ├── __pycache__
+        │   ├── book_details.cpython-310.pyc
+        │   ├── book_details.cpython-311.pyc
+        │   └── book_details.cpython-39.pyc
+        ├── book_details.py
+        └── get_user_profile.py
 ```
+
 
 ## Using the Application
 1. **User Registration and Login**
@@ -91,3 +211,14 @@ Project File Structure
   1. Advanced Filtering Options: Introduce filters based on genres, themes, and ratings.
   2. Community Features: Enable user reviews, comments, and book discussions.
   3. Mobile App: Expand accessibility through mobile platforms for enhanced engagement.
+
+## References:
+- ChatGPT: https://chat.openai.com/
+- OpenAI CLIP: https://towardsdatascience.com/quick-fire-guide-to-multi-modal-ml-with-openais-clip-2dad7e398ac0 
+- Fast API: https://fastapi.tiangolo.com/
+- Airflow: https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html
+- Pinecone: https://www.pinecone.io/learn/vector-database/
+- Docker: https://www.docker.com/#
+- JWT Tokens: https://jwt.io/introduction
+- gTTs: https://gtts.readthedocs.io/en/latest/
+
